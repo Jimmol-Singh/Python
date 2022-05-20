@@ -1,0 +1,17 @@
+import socket 
+
+ip_addpress = "import computer ip here"
+port_number =  import port number here
+
+#for port in range(1,1024):
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+result = sock.connect_ex((ip_addpress,port_number))
+
+if result == 0:
+    print(f"Port {port_number} is open")
+else:
+    print(f"Port {port_number} is closed")
+
+
+
