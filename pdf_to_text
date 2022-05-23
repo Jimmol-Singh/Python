@@ -1,0 +1,39 @@
+from pdf2image import convert_from_path
+from PIL import Image
+from pytesseract import pytesseract
+
+
+#Step 1: install tesseract on pc(windows)  https://github.com/tesseract-ocr/tesseract#installing-tesseract
+#Step 2: install poppler and set the path to bin file   https://github.com/oschwartz10612/poppler-windows/releases/
+#Step 3: run pip install pd2image
+#Step 4: run pip install pytesseract
+#Step 3: on windows create a variable with the tesseract.exe path stored in it
+
+#note might have to delete images to create new images from new pdf
+
+
+
+path_to_tesseract = r"C:\Users\jimmol.singh\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"
+pytesseract.tesseract_cmd = path_to_tesseract
+image = convert_from_path("New.pdf")
+
+
+for i in range(len(image)):
+   
+      # Save pages as images in the pdf
+    image[i].save('page'+ str(i) +'.jpg', 'JPEG')
+
+
+
+image_path = r"page0.jpg"
+
+
+img = Image.open(image_path)
+
+
+
+
+text = pytesseract.image_to_string(img)
+
+print(text[:-1])
+
