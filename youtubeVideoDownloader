@@ -1,0 +1,8 @@
+import pytube
+
+
+link = "insert youtube url here"
+yt = pytube.YouTube(link)
+
+yt.streams.filter(file_extension='mp4').first().download()
+print('downloaded', link)
