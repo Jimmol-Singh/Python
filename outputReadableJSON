@@ -1,0 +1,26 @@
+import requests
+import json
+
+
+
+
+populationData = None
+
+
+try:
+    populationData = requests.get("https://datausa.io/api/data?drilldowns=Nation&measures=Population")
+except:
+    print("Something went wrong")
+
+
+
+
+
+def jprint(obj):
+    text = json.dumps(obj, sort_keys=True, indent=4)
+    print(text)
+
+
+
+
+jprint(populationData.json())
