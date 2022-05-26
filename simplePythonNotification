@@ -1,0 +1,48 @@
+import datetime
+import time
+from turtle import title
+import requests
+from plyer import notification
+
+
+#pip install plyer
+#pip install requests
+
+covidData = None
+
+try:
+    covidData = requests.get("https://corona-rest-api.herokuapp.com/Api/USA/")
+except:
+    print("Error, maybe check your internet connect...?")
+
+
+
+
+
+
+
+
+if (covidData != None):
+    data = covidData.json()['Success']
+
+    while(True):
+        
+        notification.notify(
+         title =  "COVID19 Stats on {}".format(datetime.date.today()),
+        
+         message = "Total cases: {totalcases}\nToday cases : {todaycases}\nToday deaths :{todaydeaths}\nTotal active :{active}".format(
+             totalcases = data['cases'],
+             todaycases = data['todayCases'],
+             todaydeaths = data['todayDeaths'],
+             active = data['active']
+         ),
+
+
+         
+            # the notification stays for 50sec
+            timeout  = 50
+
+
+        )
+
+        time.sleep(10)
