@@ -1,0 +1,69 @@
+from tkinter import *
+
+
+
+
+
+
+
+windowsHeight = 600
+windowsWidth = 500
+
+window = Tk()
+
+window.title("Registration Form")
+
+
+
+fname=Label(window, text="First name: ", fg='black', font=("calibre",15))
+fname.place(x=60, y=50)
+
+fnameTxtFld = Entry(window, text="Enter your first name")
+fnameTxtFld.place(x=180,y=55)
+
+
+
+lname=Label(window, text="Last name: ", fg='black', font=("calibre",15))
+lname.place(x=60, y=100)
+
+lnameTxtFld = Entry(window, text="Enter your last name")
+lnameTxtFld.place(x=180,y=105)
+
+
+
+email=Label(window, text="Email: ", fg='black', font=("calibre",15))
+email.place(x=60, y=150)
+
+emailTxtFld = Entry(window, text="Enter your email")
+emailTxtFld.place(x=180,y=155)
+
+
+
+Gender=Label(window, text="Gender: ", fg='black', font=("calibre",15))
+Gender.place(x=60,y=200)
+
+selected=IntVar()
+rMale=Radiobutton(window, text="male",variable=selected, value=1)
+rFemale=Radiobutton(window, text="Female",variable=selected, value=2)
+
+rMale.place(x=180,y=200)
+rFemale.place(x=240,y=200)
+
+
+#generate button
+btn=Button(window,text="Generate",fg='blue')
+btn.place(x=225,y=300)
+
+
+
+window.geometry(f"{windowsWidth}x{windowsHeight}")
+
+window.mainloop()
+
+
+
+
+
+
+
+
