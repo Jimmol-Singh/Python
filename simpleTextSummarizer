@@ -1,0 +1,41 @@
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lex_rank import LexRankSummarizer
+
+
+
+
+
+document1 = """The Ceph File System, or CephFS, is a POSIX-compliant file system built on top of Ceph’s distributed object store, RADOS. 
+               CephFS endeavors to provide a state-of-the-art, multi-use, highly available, and performant file store for a variety of applications, 
+               including traditional use-cases like shared home directories, HPC scratch space, and distributed workflow shared storage.
+               CephFS achieves these goals through the use of some novel architectural choices. Notably, file metadata is stored in a separate 
+               RADOS pool from file data and served via a resizable cluster of Metadata Servers, or MDS, which may scale to support higher throughput
+               metadata workloads. Clients of the file system have direct access to RADOS for reading and writing file data blocks. For this reason, 
+               workloads may linearly scale with the size of the underlying RADOS object store; that is, there is no gateway or broker mediating data I/O for 
+               clients."""
+
+
+
+
+
+parser = PlaintextParser.from_string(document1,Tokenizer("english"))
+# For Files
+#parser = PlaintextParser.from_file(file, Tokenizer("english"))
+
+summarizer = LexRankSummarizer()
+#Summarize the document with 2 sentences
+summary = summarizer(parser.document, 2)
+
+for sentence in summary:
+    print(sentence) 
+    
+    
+    
+    
+    
+    
+  #output
+  #The Ceph File System, or CephFS, is a POSIX-compliant file system built on top of Ceph’s distributed object store, RADOS.
+  #CephFS endeavors to provide a state-of-the-art, multi-use, highly available, and performant file store for a variety of 
+  #applications, including traditional use-cases like shared home directories, HPC scratch space, and distributed workflow shared storage.
